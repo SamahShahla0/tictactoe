@@ -39,6 +39,9 @@ h1{
     text-align: center;
     line-height: 100px; /*so the text also will be vertically aligned*/
 }
+.column:hover{
+    background-color: rgb(255, 221, 226);
+}
 .right-border{
     border-right: 15px solid black;
 }
