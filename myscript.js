@@ -12,8 +12,13 @@ class Player0 {
     constructor(board) {
 
         this.takeTurn = function () {
+            //adding an event listener on click for each inner div
             board.positions.forEach(e => e.addEventListener('click', HandleTurnTaken) )
         };
+
+        function HandleTurnTaken(e) {
+            console.log("took turn");
+        }
 
     }
 }
