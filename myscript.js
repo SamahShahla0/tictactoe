@@ -17,7 +17,10 @@ class Player0 {
         };
 
         function HandleTurnTaken(e) {
-            console.log("took turn");
+            // the target of the click event will have X as an inner text
+            e.target.innerText = "X";
+            // now remove the event listener because we should not be able to click when its not our turn
+            board.positions.forEach(e => e.removeEventListener('click', HandleTurnTaken) )
         }
 
     }
