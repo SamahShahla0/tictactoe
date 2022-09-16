@@ -1,16 +1,40 @@
 // used the methos of solving this by objects of classes
+// classes must be declared before using them
+// constructing functions for new defined classes
+class Board {
+    constructor() {
+        //every position is an inner div in the board, => 9 positions 
+        this.positions = Array.from(document.querySelectorAll('.column'));
+        console.log(this.positions);
+    }
+}
 
-const game = new TictactoeGame();
+class Player0 {
+    constructor() {
 
-game.start();
+        this.takeTurn = function () {
+            console.log(" player 0 turn");
+        };
+
+    }
+}
+class Player1 {
+    constructor() {
+
+        this.takeTurn = function () {
+            console.log(" player 1 turn");
+        };
+
+    }
+}
 
 class TictactoeGame {
     constructor() {
         let turn = 0;
         // creating new objects of needed classes
         const board = new Board();
-        const player0 = new Player();
-        const player1 = new Player();
+        const player0 = new Player0();
+        const player1 = new Player1();
 
         this.start = function () {
             // to watch changes of all positions, if a change happens to a position, turn will be for the other player
@@ -39,15 +63,8 @@ class TictactoeGame {
     }
 }
 
-// constructing functions for new defined classes
-class Board {
-    constructor() {
-        //every position is an inner div in the board, => 9 positions 
-        this.positions = Array.from(document.querySelectorAll('.column'));
-        console.log(this.positions);
-    }
-}
+const game = new TictactoeGame();
 
-function Player(){
-    
-}
+game.start();
+
+
