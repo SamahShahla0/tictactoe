@@ -14,6 +14,7 @@ class Player0 {
         this.takeTurn = function () {
             //adding an event listener on click for each inner div
             board.positions.forEach(e => e.addEventListener('click', HandleTurnTaken) )
+            
         };
 
         function HandleTurnTaken(e) {
@@ -27,14 +28,26 @@ class Player0 {
 }
 class Player1 {
     constructor(board) {
+        // filter the positions according to the innerText, if empty or not
+        // availablePositions will be an array
+        let availablePositions = board.positions.filter((p) => p.innerText == '');
 
         this.takeTurn = function () {
-            // this is not player 0, so not all positions are available
-            // filter the positions according to the innerText, if empty or not
-            // availablePositions will be an array
-            const availablePositions = board.positions.filter((p) => p.innerText == '');
+
+            availablePositions = board.positions.filter((p) => p.innerText == '');
             console.log(availablePositions);
+            //adding an event listener on click for the unchosen divs
+            availablePositions.forEach(e => e.addEventListener('click', HandleTurnTaken) )
         };
+
+        function HandleTurnTaken(e) {
+            // the target of the click event will have X as an inner text
+            e.target.innerText = "O";
+            availablePositions = board.positions.filter((p) => p.innerText == '');
+            console.log(availablePositions);
+            // now remove the event listener because we should not be able to click when its not our turn
+            availablePositions.forEach(e => e.removeEventListener('click', HandleTurnTaken) )
+        }
 
     }
 }
