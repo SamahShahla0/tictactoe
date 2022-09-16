@@ -29,7 +29,11 @@ class Player1 {
     constructor(board) {
 
         this.takeTurn = function () {
-            console.log(" player 1 turn");
+            // this is not player 0, so not all positions are available
+            // filter the positions according to the innerText, if empty or not
+            // availablePositions will be an array
+            const availablePositions = board.positions.filter((p) => p.innerText == '');
+            console.log(availablePositions);
         };
 
     }
