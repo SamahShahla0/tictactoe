@@ -5,7 +5,6 @@ class Board {
     constructor() {
         //every position is an inner div in the board, => 9 positions 
         this.positions = Array.from(document.querySelectorAll('.column'));
-        console.log(this.positions);
     }
 }
 //passing the board to each player constructor so the player can be aware of the board state
@@ -13,7 +12,7 @@ class Player0 {
     constructor(board) {
 
         this.takeTurn = function () {
-            console.log(" player 0 turn");
+            board.positions.forEach(e => e.addEventListener('click', HandleTurnTaken) )
         };
 
     }
