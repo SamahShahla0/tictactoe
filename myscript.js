@@ -8,9 +8,9 @@ class Board {
         console.log(this.positions);
     }
 }
-
+//passing the board to each player constructor so the player can be aware of the board state
 class Player0 {
-    constructor() {
+    constructor(board) {
 
         this.takeTurn = function () {
             console.log(" player 0 turn");
@@ -19,7 +19,7 @@ class Player0 {
     }
 }
 class Player1 {
-    constructor() {
+    constructor(board) {
 
         this.takeTurn = function () {
             console.log(" player 1 turn");
@@ -33,8 +33,8 @@ class TictactoeGame {
         let turn = 0;
         // creating new objects of needed classes
         const board = new Board();
-        const player0 = new Player0();
-        const player1 = new Player1();
+        const player0 = new Player0(board);
+        const player1 = new Player1(board);
 
         this.start = function () {
             // to watch changes of all positions, if a change happens to a position, turn will be for the other player
