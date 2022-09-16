@@ -3,8 +3,12 @@
 // constructing functions for new defined classes
 class Board {
     constructor() {
-        //every position is an inner div in the board, => 9 positions 
+        //every position is an inner div in the board, => 9 positions //this is an attribute of the class
         this.positions = Array.from(document.querySelectorAll('.column'));
+        // giving the board a function to check who is the winner // this is a function of the class
+        this.checkForWinner = function() {
+
+        }
     }
 }
 //passing the board to each player constructor so the player can be aware of the board state
@@ -75,6 +79,9 @@ class TictactoeGame {
         };
 
         function takeTurn() {
+            if (board.checkForWinner()){
+                return;
+            }
             if (turn % 2 == 0) {
                 player0.takeTurn();
             }
