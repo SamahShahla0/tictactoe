@@ -8,14 +8,37 @@
     width: 80vw;
     height: 600px;
     margin-left: 150px;
+    
 }
 
 h1{
     font-size: 40px;
     width: 80%;
-    align-self: center;
 
 }
 .game{
-    
+    align-self: center;
+}
+
+
+
+
+
+/*utilities*/
+.row{
+    height: 150px;
+}
+.bottom-border{
+    border-bottom: 15px solid black;
+}
+.column{
+    height: 150px;
+    width: 150px;
+    float: left;
+    font-size: 100px;
+    text-align: center;
+    line-height: 100px; /*so the text also will be vertically aligned*/
+}
+.right-border{
+    border-right: 15px solid black;
 }
