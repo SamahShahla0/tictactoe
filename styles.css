@@ -1,0 +1,21 @@
+*{
+    box-sizing: border-box;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    width: 80vw;
+    height: 600px;
+    margin-left: 150px;
+}
+
+h1{
+    font-size: 40px;
+    width: 80%;
+    align-self: center;
+
+}
+.game{
+    
+}
