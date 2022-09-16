@@ -20,7 +20,7 @@ function TictactoeGame(){
     }
 
     function takeTurn() {
-        console.log("changed");
+        console.log("changed"); // test succeded
     }
 
 }
