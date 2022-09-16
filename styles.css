@@ -20,7 +20,9 @@ h1{
     align-self: center;
 }
 
-
+.winner {
+    color: green;
+}
 
 
 

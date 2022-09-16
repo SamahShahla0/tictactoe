@@ -6,8 +6,36 @@ class Board {
         //every position is an inner div in the board, => 9 positions //this is an attribute of the class
         this.positions = Array.from(document.querySelectorAll('.column'));
         // giving the board a function to check who is the winner // this is a function of the class
+        // combinations of numbers for knowing the winner will be based on the folloiwng order 
+        // 0 1 2
+        // 3 4 5 
+        // 6 7 8
         this.checkForWinner = function() {
+            let winner = false; // to flag if winner is found or not
+            const winningCombinations = [
+                [0,1,2], [3,4,5], [6,7,8], [0,3,6], [1,4,7], [2,5,8], [0,4,8], [2,4,6]
+            ]
 
+            const positions = this.positions;
+            // cycling the winning combinations to see if the board has any of them
+            winningCombinations.forEach((winningCombo) => {
+                // storing the value of each element of the winningCombo mini array in a variable
+                const position0innerText = positions[winningCombo[0]].innerText;
+                const position1innerText = positions[winningCombo[1]].innerText
+                const position2innerText = positions[winningCombo[2]].innerText
+
+                const isWinningCombo = position0innerText != '' && position0innerText == position1innerText &&    position1innerText == position2innerText ;
+
+                if (isWinningCombo) {
+                    winner = true;
+                    winningCombo.forEach((index) => {
+                        // added winner styleing class to the winning combination elements text
+                        positions[index].classList.add('winner');
+                    })
+                }
+            });
+            
+            return winner;
         }
     }
 }
