@@ -12,7 +12,7 @@ class Board {
         // 3 4 5 
         // 6 7 8
         this.checkForWinner = function() {
-            let winner = false; // to flag if winner is found or not
+            let winner = null; // to flag if winner is found or not
             const winningCombinations = [
                 [0,1,2], [3,4,5], [6,7,8], [0,3,6], [1,4,7], [2,5,8], [0,4,8], [2,4,6]
             ]
@@ -28,14 +28,22 @@ class Board {
                 const isWinningCombo = position0innerText != '' && position0innerText == position1innerText &&    position1innerText == position2innerText ;
 
                 if (isWinningCombo) {
-                    winner = true;
+                    if(position0innerText == 'X'){
+                        winner = 1;
+                    }
+                    else if(position0innerText == 'O'){
+                        winner = -1;
+                    }
+                    else{
+                        winner = 'tie' ;
+                    }
                     winningCombo.forEach((index) => {
                         // added winner styleing class to the winning combination elements text
                         positions[index].classList.add('winner');
                     })
                 }
             });
-            
+            console.log(winner);
             return winner;
         }
     }
@@ -70,16 +78,57 @@ class ComputerPlayer {
         //let availablePositions = board.positions.filter((p) => p.innerText == '');
 
         this.takeTurn = function () {
-
-            let e = Math.floor(Math.random() * board.remaining.length);
-            board.remaining[e].innerText = "O";
+            
+            console.log("o takes turn");
+            let move;
+            let bestScore = Infinity;
+            let bestMove;
+            board.remaining.forEach((x) =>  {
+                //console.log("o takes turn");
+                x.innerText = "O";
+               // console.log(x);
+                let score = minimax(board, 0);
+                //console.log("i am still working well");
+                x.innerText = '';
+                //console.log(x);
+                if (score < bestScore){
+                bestScore = score;
+                bestMove = board.remaining.indexOf(x);
+                console.log("bestmove : " + bestMove);
+                }
+            })
+            let scored = {
+                'X' : 1,
+                'O' : -1,
+                'tie' : 0
+            }
+            function minimax(board , depth){
+                let result = board.checkForWinner();
+                return 1;
+            }
+            move = board.remaining[bestMove];
+            console.log("moooooooooooove:" + move);
+            move.innerText = "O";
+            //console.log("testing: " + move);
+            //board.remaining[bestMove].innerText="O";
+            board.remaining = board.positions.filter((p) => p.innerText == '');
+            //placing ai on an available empty spot
+            /*board.remaining[0] = ai;
+            let score = minimax(board);
+            if (score > bestScore){
+                bestScore = score;
+                bestMove = 0;
+            }*/
+            //let e = Math.floor(Math.random() * board.remaining.length);
+           /*/* board.remaining[e].innerText = "O";
+            board.remaining = board.positions.filter((p) => p.innerText == '');*/
             /////////////////////////////////////////////////////////////////////////////////////////
             //availablePositions = board.positions.filter((p) => p.innerText == '');
             //console.log(availablePositions);
             //adding an event listener on click for the unchosen divs
            // board.remaining.forEach(e => e.addEventListener('click', HandleTurnTaken) );
         };
-
+        
         /*function HandleTurnTaken(e) {
             // the target of the click event will have X as an inner text
             e.target.innerText = "O";
