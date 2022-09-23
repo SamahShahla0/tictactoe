@@ -63,7 +63,7 @@ class Player0 {
 
     }
 }
-class Player1 {
+class ComputerPlayer {
     constructor(board) {
         // filter the positions according to the innerText, if empty or not
         // availablePositions will be an array
@@ -71,13 +71,16 @@ class Player1 {
 
         this.takeTurn = function () {
 
+            let e = Math.floor(Math.random() * board.remaining.length);
+            board.remaining[e].innerText = "O";
+            /////////////////////////////////////////////////////////////////////////////////////////
             //availablePositions = board.positions.filter((p) => p.innerText == '');
             //console.log(availablePositions);
             //adding an event listener on click for the unchosen divs
-            board.remaining.forEach(e => e.addEventListener('click', HandleTurnTaken) );
+           // board.remaining.forEach(e => e.addEventListener('click', HandleTurnTaken) );
         };
 
-        function HandleTurnTaken(e) {
+        /*function HandleTurnTaken(e) {
             // the target of the click event will have X as an inner text
             e.target.innerText = "O";
             // now remove the event listener because we should not be able to click when its not our turn
@@ -90,7 +93,7 @@ class Player1 {
             
             //availablePositions.forEach(e => e.removeEventListener('click', HandleTurnTaken) )
             
-        }
+        }*/
 
     }
 }
@@ -101,7 +104,7 @@ class TictactoeGame {
         // creating new objects of needed classes
         const board = new Board();
         const player0 = new Player0(board);
-        const player1 = new Player1(board);
+        const computer = new ComputerPlayer(board);
 
         this.start = function () {
             // to watch changes of all positions, if a change happens to a position, turn will be for the other player
@@ -125,7 +128,7 @@ class TictactoeGame {
                 player0.takeTurn();
             }
             else {
-                player1.takeTurn();
+                computer.takeTurn();
             }
             turn = turn + 1;
         }
